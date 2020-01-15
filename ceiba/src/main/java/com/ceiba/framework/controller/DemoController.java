@@ -1,7 +1,7 @@
 package com.ceiba.framework.controller;
 
-import com.ceiba.domain.entity.Person;
-import com.ceiba.domain.repository.PersonRepository;
+import com.ceiba.application.command.PersonCommand;
+import com.ceiba.application.handler.PersonHandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,18 +11,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class DemoController {
+    
+    private PersonHandler personHandler;    
+    private PersonCommand personCommand;
 
-    @Autowired
-    private PersonRepository personRepository;
+    public DemoController(PersonHandler personHandler,PersonCommand personCommand){
+        this.personHandler = personHandler;
+        this.personCommand = personCommand;
+    }
 
-    @GetMapping(value="/greeting")
+    @GetMapping("/greeting")
     public String greeting(@RequestParam(name="name",required = false,defaultValue = "World") String name,Model model) {        
-        Person person = new Person();
-        person.setId(1);
-        person.setName("Daniel Mauricio");
-        personRepository.save(person);
+        this.personCommand.setId(1);
+        this.personCommand.setName("Daniel Mauricio Valencia");
+        this.personHandler.create(this.personCommand);
         
         model.addAttribute("name",name);
+        return "greeting";
+    }
+
+    @GetMapping("/list")
+    public String  list(Model model){
+        model.addAttribute("people", this.personHandler.list());
         return "greeting";
     }
 }

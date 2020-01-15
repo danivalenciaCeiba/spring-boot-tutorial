@@ -5,12 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Person{
+public class Person {
 
     @Id
     private int id;
 
-    @Column(name = "name",length = 50)
+    @Column(name = "name", length = 50)
     private String name;
 
     public int getId() {
@@ -26,6 +26,14 @@ public class Person{
     }
 
     public void setName(String name) {
+        this.name = name;
+    }
+
+    public Person() {		
+	}
+
+    public Person(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 
