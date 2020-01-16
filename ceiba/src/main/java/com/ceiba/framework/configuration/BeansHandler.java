@@ -8,6 +8,7 @@ import com.ceiba.domain.service.PersonService;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class BeansHandler {
@@ -29,5 +30,11 @@ public class BeansHandler {
     @Bean
     public PersonHandler personHandler(PersonService personService, PersonBuilder personBuilder) {
         return new PersonHandler(personService, personBuilder);
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
     }
 }
