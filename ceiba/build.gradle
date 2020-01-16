@@ -19,6 +19,7 @@ dependencies {
 	implementation 'org.springframework.security:spring-security-test'
 	runtime("com.h2database:h2:1.3.176")
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	implementation('org.postgresql:postgresql')
 	compileOnly 'org.projectlombok:lombok:1.18.10'
 	annotationProcessor 'org.projectlombok:lombok:1.18.10'
 	testImplementation 'junit:junit:4.12'

@@ -25,7 +25,7 @@ class CeibaApplicationTests {
 	@Test
 	public void createUserTest() {
 		User user = new User();
-		user.setId(1);
+		user.setId(5);
 		user.setName("Daniel Mauricio");
 		user.setPassword(encoder.encode("123"));
 		User userResponse = this.userRepository.save(user);
